@@ -2,7 +2,7 @@ Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.5.2
-Release:	8
+Release:	9
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/cgi-bin/download/%{name}-%{version}.tar.gz
@@ -79,9 +79,9 @@ cd ../xephemdbd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/doc,%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
-	$RPM_BUILD_ROOT{%{_libdir}/X11/app-defaults,%{_docdir}/%{name}-%{version}}
+	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -103,7 +103,7 @@ install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/*.pl $RPM_BUILD_ROOT%{_bindir}
 cp -f Copyright LICENSE
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,4 +127,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*.pl
 
 %files doc
-%{_docdir}/%{name}-%{version}
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/doc
