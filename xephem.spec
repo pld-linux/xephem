@@ -51,18 +51,18 @@ XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
 %prep
 %setup -q
 
+mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
+
 %build
-cd libastro
-%{__make}
-cd ../libip
-%{__make}
-cd ../GUI/xephem
-/usr/X11R6/bin/xmkmf
-%{__make}
+%{__make} -C libastro	CC="%{__cc}" CFLAGS="%{rpmcflags}"
+%{__make} -C libip	CC="%{__cc}" CFLAGS="%{rpmcflags} -I../libastro"
+cd GUI/xephem
+xmkmf -a
+%{__make} CC="%{__cc}" CDEBUGFLAGS="%{rpmcflags}"
 cd tools/lx200xed
-%{__make}
+%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags} -I../../../../libastro"
 cd ../xephemdbd
-%{__make}
+%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags} -I../../../../libastro"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,17 +70,17 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Scientific/Astronomy,%{_libdir}/X11/app-defaults}
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
-mv -f GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
-mv -f GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
-mv -f GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
-mv -f GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
+
 install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Scientific/Astronomy
 echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/XEphem
 
 install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
-mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 
 install GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
