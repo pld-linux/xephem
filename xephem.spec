@@ -9,11 +9,13 @@ Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
 Source0:	ftp://iraf.noao.edu/contrib/xephem/%{name}-%{version}.tar.gz
 Patch0:		%{name}-3.2.3-config.patch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 
 %description
+An interactive astronomical ephemeris program for X Window.
 
 %description -l pl
 XEphem jest interaktywnym programem astronomicznym dla X Window
