@@ -16,6 +16,8 @@ BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
+
 %description
 XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
 XEphem is a star-charting, sky-simulating, ephemeris-generating
@@ -33,7 +35,7 @@ geocentrycznym, heliocentrycznym i topocentrycznym.
 Summary:	Additional tools for use with XEphem
 Summary(pl):	Dodatkowe narzêdzia dla XEphema
 Group:		X11/Applications/Science
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description tools
 astorb2edb - convert astorb.txt to 2 .edb files,
@@ -53,7 +55,7 @@ XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
 Summary:	XEphem documentation in PDF
 Summary(pl):	Dokumentacja XEphema w PDF-ie
 Group:		X11/Applications/Science
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description doc
 XEphem documentation in PDF format.
@@ -67,21 +69,28 @@ Dokumentacja XEphema w formacie PDF.
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 
 %build
-%{__make} -C libastro	CC="%{__cc}" CFLAGS="%{rpmcflags}"
-%{__make} -C libip	CC="%{__cc}" CFLAGS="%{rpmcflags} -I../libastro"
+%{__make} -C libastro \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
+%{__make} -C libip \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -I../libastro"
 cd GUI/xephem
 xmkmf -a
-%{__make} CC="%{__cc}" CDEBUGFLAGS="%{rpmcflags}"
-cd tools/lx200xed
-%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags} -I../../../../libastro"
-cd ../xephemdbd
-%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags} -I../../../../libastro"
+%{__make} \
+	CC="%{__cc}" \
+	CDEBUGFLAGS="%{rpmcflags}"
+%{__make} -C tools/lx200xed \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -I../../../../libastro"
+%{__make} -C tools/xephemdbd \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -I../../../../libastro"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/doc,%{_mandir}/man1} \
-	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
-	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults
+	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}}
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -93,7 +102,7 @@ install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
-echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/XEphem
+echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_appdefsdir}/XEphem
 
 install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
 
@@ -115,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_pixmapsdir}/*
-%{_libdir}/X11/app-defaults/*
+%{_appdefsdir}/*
 %{_mandir}/man1/*
 
 %files tools
