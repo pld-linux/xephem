@@ -13,7 +13,7 @@ Source3:	http://www.clearskyinstitute.com/cgi-bin/download/xephem-3.5.2.pdf
 # Source3-md5:	2bcff3adf673d7b1e95512bbada47abf
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
-BuildRequires:	motif-devel
+BuildRequires:	openmotif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
