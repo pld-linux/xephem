@@ -12,6 +12,7 @@ Source2:	%{name}.png
 # http://www.clearskyinstitute.com/xephem/help/xephem.html
 Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.6.4.tar.bz2
 # Source3-md5:	c1bf6a50d00f8e4970acd8e6c01e64ac
+Source4:	%{name}_sites
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
@@ -116,6 +117,9 @@ xmkmf -a
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/doc,%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}}
+
+rm -f GUI/xephem/auxil/xephem_sites
+cp %{SOURCE4} GUI/xephem/auxil/
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
