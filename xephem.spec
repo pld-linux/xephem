@@ -71,7 +71,7 @@ install $XS/XEphem.ad \
 
 cat > README.linux <<'EOT'
 This XEphem binary RPM is compiled to link statically to
-Lesstif 0.89.9. The source RPM will build dynamically 
+Lesstif 0.89.9. The source RPM will build dynamically
 linked to your installed version of LessTif.   -C. Kulesa
 EOT
 
