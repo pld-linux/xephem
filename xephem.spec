@@ -5,8 +5,6 @@ Version:	3.2.3
 Release:	7
 License:	Freely redistributable/modifiable if attributed, no warranty
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(pl):	X11/Aplikacje
 Source0:	ftp://iraf.noao.edu/contrib/xephem/%{name}-%{version}.tar.gz
 Patch0:		%{name}-3.2.3-config.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
