@@ -3,7 +3,7 @@ Summary(pl):	Interaktywny program astronomiczny dla X Window
 Name:		xephem
 Version:	3.2.3
 Release:	7
-Copyright:	Freely redistributable/modifiable if attributed, no warranty
+License:	Freely redistributable/modifiable if attributed, no warranty
 Group:		X11/Applications
 Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
