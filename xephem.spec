@@ -6,7 +6,7 @@ Release:	0.1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
-# Source0-md5:	5820b51667531743d0db0e7f712a9fae
+# Source0-md5:	f108d27e25cf9d569fbe419c1570e504
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 # http://www.clearskyinstitute.com/xephem/help/xephem.html
