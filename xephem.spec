@@ -2,7 +2,7 @@ Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.5.2
-Release:	3
+Release:	4
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
@@ -67,7 +67,7 @@ cd ../xephemdbd
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
-	$RPM_BUILD_ROOT{%{_applnkdir}/Scientific,%{_libdir}/X11/app-defaults}
+	$RPM_BUILD_ROOT{%{_applnkdir}/Scientific/Astronomy,%{_libdir}/X11/app-defaults}
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 mv -f GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -76,16 +76,14 @@ mv -f GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
 mv -f GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
 install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Scientific
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Scientific/Astronomy
 echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/XEphem
 
 install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
-gzip -9nf GUI/xephem/tools/lx200xed/README-lx
 
 install GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
-gzip -9nf GUI/xephem/tools/xephemdbd/{INSTALL,README}
 
 install GUI/xephem/tools/*.pl $RPM_BUILD_ROOT%{_bindir}
 
@@ -96,13 +94,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xephem
 %{_datadir}/%{name}
-%{_applnkdir}/Scientific/*
+%{_applnkdir}/Scientific/Astronomy/*
 %{_libdir}/X11/app-defaults/*
 %{_mandir}/man1/*
 
 %files tools
 %defattr(644,root,root,755)
-%doc GUI/xephem/tools/{lx200xed,xephemdbd}/*.gz
+%doc GUI/xephem/tools/lx200xed/README-lx GUI/xephem/tools/xephemdbd/{INSTALL,README}
 %doc GUI/xephem/tools/xephemdbd/*.html
 %attr(755,root,root) %{_bindir}/lx200xed
 %attr(755,root,root) %{_bindir}/xephemdbd
