@@ -47,7 +47,7 @@ echo "XEphem description \"An Interactive Astronomy Ephemeris\" " >> $RPM_BUILD_
 echo "XEphem exec \"xephem &\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
 echo "XEphem group \"Applications\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
 
-install -s $XS/xephem $RPM_BUILD_ROOT%{_bindir}/xephem
+install $XS/xephem $RPM_BUILD_ROOT%{_bindir}/xephem
 
 install $XS/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1x
 
