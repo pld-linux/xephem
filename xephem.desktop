@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=XEphem
+Comment=Interactive astronomy program
+Comment[pl]=Interaktywny program astronomiczny
+Exec=xephem
+Terminal=0
+Type=Application
+# vi: encoding=utf-8
