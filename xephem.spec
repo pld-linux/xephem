@@ -1,93 +1,109 @@
-Summary:	An interactive astronomical ephemeris program for X Window
-Summary(pl):	Interaktywny program astronomiczny dla X Window
+Summary:	Interactive astronomy program
+Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.2.3
-Release:	7
-License:	Freely redistributable/modifiable if attributed, no warranty
-Group:		X11/Applications
-Source0:	ftp://iraf.noao.edu/contrib/xephem/%{name}-%{version}.tar.gz
-Patch0:		%{name}-3.2.3-config.patch
+Version:	3.5.2
+Release:	1
+License:	distributable with free-unices distros, free for non-profit non-commercial purposes
+Group:		X11/Applications/Science
+Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
+Source1:	%{name}.desktop
+URL:		http://www.clearskyinstitute.com/xephem/
+BuildRequires:	XFree86-devel
+BuildRequires:	lesstif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 
 %description
-An interactive astronomical ephemeris program for X Window.
+XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
+XEphem is a star-charting, sky-simulating, ephemeris-generating
+celestial virtuoso.
 
 %description -l pl
-XEphem jest interaktywnym programem astronomicznym dla X Window
-wykorzystuj±cym bibliotekê Motif. Udostêpnia wiele informacji o
-satelitach Ziemi, Uk³adzie S³onecznym i odleg³ych obiektach
-astronomicznych, w formie graficznej i liczbowej, w uk³adzie
+XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
+XEphem jest programem sporz±dzaj±cym mapê gwiazd, symuluj±cym niebo,
+efemerydalnie generuj±cym sferê niebiesk± wirtuozem. Udostêpnia wiele
+informacji o satelitach Ziemi, Uk³adzie S³onecznym i odleg³ych
+obiektach astronomicznych, w formie graficznej i liczbowej, w uk³adzie
 geocentrycznym, heliocentrycznym i topocentrycznym.
+
+%package tools
+Summary:	Additional tools for use with XEphem
+Summary(pl):	Dodatkowe narzêdzia dla XEphema
+Group:		X11/Applications/Science
+Requires:	%{name} = %{version}
+
+%description tools
+astorb2edb - convert astorb.txt to 2 .edb files,
+mpcorb2edb - convert MPCORB.DAT to 2 .edb files,
+lx200xed - a daemon to connect XEphem to a Meade LX200 telescope,
+XEphemdbd - is a filter to find astronomical objects within a given
+	    field of view.
+
+%description tools -l pl
+astorb2edb - konwertuje astorb.txt do 2 plików .edb,
+mpcorb2edb - konwertuje MPCORB.DAT do 2 plików .edb,
+lx200xed - demon do po³±czenia XEphema z teleskopem Meade LX200,
+XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
+	    pól opisu.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 cd libastro
-xmkmf
 %{__make}
-
+cd ../libip
+%{__make}
 cd ../GUI/xephem
-xmkmf
+/usr/X11R6/bin/xmkmf
+%{__make}
+cd tools/lx200xed
+%{__make}
+cd ../xephemdbd
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-XS=GUI/xephem
-XL=$RPM_BUILD_ROOT%{_libdir}/xephem
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
+	$RPM_BUILD_ROOT{%{_applnkdir}/Science,%{_libdir}/X11/app-defaults}
 
-install -d $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk
+install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
+mv -f GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
+mv -f GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
+mv -f GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
+mv -f GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
+install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
 
-echo "XEphem name \"XEphem\" " > $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
-echo "XEphem description \"An Interactive Astronomy Ephemeris\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
-echo "XEphem exec \"xephem &\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
-echo "XEphem group \"Applications\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Science
+echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_libdir}/X11/app-defaults/XEphem
 
-install $XS/xephem $RPM_BUILD_ROOT%{_bindir}/xephem
+install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
+mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
+gzip -9nf GUI/xephem/tools/lx200xed/README-lx
 
-install $XS/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1x
+install GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
+gzip -9nf GUI/xephem/tools/xephemdbd/{INSTALL,README}
 
-install -d $XL/auxil
-install -d $XL/catalogs
-install -d $XL/catalogs/gsc
-install -d $XL/fifos
-install -d $XL/tools
-install -d $XL/tools/gsc
-install -d $XL/tools/xephemdbd
+install GUI/xephem/tools/*.pl $RPM_BUILD_ROOT%{_bindir}
 
-install $XS/auxil/*		$XL/auxil
-install $XS/catalogs/*		$XL/catalogs
-install $XS/fifos/*		$XL/fifos
-install $XS/tools/[Raejtm]*	$XL/tools
-install $XS/tools/gsc/*	$XL/tools/gsc
-install $XS/tools/xephemdbd/*	$XL/tools/xephemdbd
-
-install $XS/XEphem.ad \
-	$RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/app-defaults/XEphem
-
-cat > README.linux <<'EOT'
-This XEphem binary RPM is compiled to link statically to
-Lesstif 0.89.9. The source RPM will build dynamically
-linked to your installed version of LessTif.   -C. Kulesa
-EOT
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Copyright
-%doc HISTORY
-%doc INSTALL
-%doc README
+%attr(755,root,root) %{_bindir}/xephem
+%{_datadir}/%{name}
+%{_applnkdir}/Science/*
+%{_libdir}/X11/app-defaults/*
+%{_mandir}/man1/*
 
-%doc README.linux
-
-%doc GUI/xephem/XEphem.ad
-
-%{_prefix}/X11R6/bin/xephem
-%{_mandir}/man1/xephem.1x
-%{_libdir}/xephem
-%{_prefix}/X11R6/lib/X11/app-defaults/XEphem
-%{_prefix}/X11R6/share/applnk/XEphem
+%files tools
+%defattr(644,root,root,755)
+%doc GUI/xephem/tools/{lx200xed,xephemdbd}/*.gz
+%doc GUI/xephem/tools/xephemdbd/*.html
+%attr(755,root,root) %{_bindir}/lx200xed
+%attr(755,root,root) %{_bindir}/xephemdbd
+%attr(755,root,root) %{_bindir}/*.pl
