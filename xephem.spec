@@ -5,7 +5,7 @@ Version:	3.6.4
 Release:	0.1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
-Source0:	http://www.clearskyinstitute.com/cgi-bin/download/%{name}-%{version}.tar.gz
+Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
 # Source0-md5:	5820b51667531743d0db0e7f712a9fae
 Source1:	%{name}.desktop
 Source2:	%{name}.png
