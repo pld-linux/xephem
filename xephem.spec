@@ -6,9 +6,11 @@ Release:	6
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/cgi-bin/download/%{name}-%{version}.tar.gz
+# Source0-md5:	5820b51667531743d0db0e7f712a9fae
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	http://www.clearskyinstitute.com/cgi-bin/download/xephem-3.5.2.pdf
+# Source3-md5:	2bcff3adf673d7b1e95512bbada47abf
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	motif-devel
