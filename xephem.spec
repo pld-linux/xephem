@@ -28,11 +28,11 @@ geocentrycznym, heliocentrycznym i topocentrycznym.
 %build
 cd libastro
 xmkmf
-make
+%{__make}
 
 cd ../GUI/xephem
 xmkmf
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
