@@ -2,19 +2,17 @@ Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.5.2
-Release:	5
+Release:	6
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
-Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
+Source0:	http://www.clearskyinstitute.com/cgi-bin/download/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
+Source3:	http://www.clearskyinstitute.com/cgi-bin/download/xephem-3.5.2.pdf
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
-BuildRequires:	lesstif-devel
+BuildRequires:	motif-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
@@ -49,6 +47,18 @@ lx200xed - demon do po³±czenia XEphema z teleskopem Meade LX200,
 XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
 	    pól opisu.
 
+%package doc
+Summary:	XEphem documentation in PDF
+Summary(pl):	Dokumentacja XEphema w PDF-ie
+Group:		X11/Applications/Science
+Requires:	%{name} = %{version}
+
+%description doc
+XEphem documentation in PDF format.
+
+%description doc -l pl
+Dokumentacja XEphema w formacie PDF.
+
 %prep
 %setup -q
 
@@ -69,7 +79,7 @@ cd ../xephemdbd
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_applnkdir}/Scientific/Astronomy,%{_pixmapsdir}} \
-	$RPM_BUILD_ROOT%{_libdir}/X11/app-defaults
+	$RPM_BUILD_ROOT{%{_libdir}/X11/app-defaults,%{_docdir}/%{name}-%{version}}
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -91,6 +101,8 @@ install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/*.pl $RPM_BUILD_ROOT%{_bindir}
 cp -f Copyright LICENSE
 
+install %{SOURCE3} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -111,3 +123,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/lx200xed
 %attr(755,root,root) %{_bindir}/xephemdbd
 %attr(755,root,root) %{_bindir}/*.pl
+
+%files doc
+%{_docdir}/%{name}-%{version}
