@@ -1,16 +1,17 @@
 Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.5.2
-Release:	9
+Version:	3.6.4
+Release:	0.1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/cgi-bin/download/%{name}-%{version}.tar.gz
 # Source0-md5:	5820b51667531743d0db0e7f712a9fae
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-Source3:	http://www.clearskyinstitute.com/cgi-bin/download/xephem-3.5.2.pdf
-# Source3-md5:	2bcff3adf673d7b1e95512bbada47abf
+# http://www.clearskyinstitute.com/xephem/help/xephem.html
+Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.6.4.tar.bz2
+# Source3-md5:	c1bf6a50d00f8e4970acd8e6c01e64ac
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
@@ -67,25 +68,49 @@ Dokumentacja XEphema w formacie PDF.
 %setup -q
 
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
+mv GUI/xephem/tools/indi/README GUI/xephem/tools/indi/README-indi
+mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
+mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
 
 %build
 %{__make} -C libastro \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
+
 %{__make} -C libip \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -I../libastro"
+
+%{__make} -C liblilxml \
+        CC="%{__cc}" \
+        CFLAGS="%{rpmcflags}"
+
+%{__make} -C libjpegd \
+        CC="%{__cc}" \
+        CFLAGS="%{rpmcflags}"
+
 cd GUI/xephem
 xmkmf -a
+
 %{__make} \
 	CC="%{__cc}" \
 	CDEBUGFLAGS="%{rpmcflags}"
+
 %{__make} -C tools/lx200xed \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -I../../../../libastro"
+
 %{__make} -C tools/xephemdbd \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -I../../../../libastro"
+	CFLAGS="%{rpmcflags} -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
+
+%{__make} -C tools/xedb \
+        CC="%{__cc}" \
+        CFLAGS="%{rpmcflags} -I../../../../libastro"
+
+%{__make} drivers -C tools/indi \
+        CC="%{__cc}" \
+        CFLAGS="%{rpmcflags} -I../../../../liblilxml -I../../../../libastro"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -109,7 +134,8 @@ install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
 
-install GUI/xephem/tools/*.pl $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/auxil/*.pl $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
 cp -f Copyright LICENSE
 
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
@@ -129,7 +155,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files tools
 %defattr(644,root,root,755)
-%doc GUI/xephem/tools/lx200xed/README-lx GUI/xephem/tools/xephemdbd/{INSTALL,README}
+%doc GUI/xephem/tools/lx200xed/README-lx GUI/xephem/tools/xephemdbd/README-xephemdbd
+%doc GUI/xephem/tools/indi/README-indi GUI/xephem/tools/indi/README-indi
+
 %doc GUI/xephem/tools/xephemdbd/*.html
 %attr(755,root,root) %{_bindir}/lx200xed
 %attr(755,root,root) %{_bindir}/xephemdbd
