@@ -4,18 +4,22 @@ Name:		xephem
 Version:	3.2.3
 Release:	7
 Copyright:	Freely redistributable/modifiable if attributed, no warranty
-Group:		Applications/Scientific
-######		/home/users/ig0r/rpm/groups: no such file
-Group(pl):	Aplikacje/Naukowe
+Group:		X11/Applications
+Group(pl):	X11/Aplikacje
 Source0:	ftp://iraf.noao.edu/contrib/xephem/%{name}-%{version}.tar.gz
 Patch0:		xephem-3.2.3-config.patch
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+
 %description
+
 %description -l pl
 XEphem jest interaktywnym programem astronomicznym dla X Window
-wykorzystuj±cym bibliotekê Motif. Udostêpnia wiele informacji o satelitach
-Ziemi, Uk³adzie S³onecznym i odleg³ych obiektach astronomicznych, w formie
-graficznej i liczbowej, w uk³adzie geocentrycznym, heliocentrycznym i
-topocentrycznym.
+wykorzystuj±cym bibliotekê Motif. Udostêpnia wiele informacji o
+satelitach Ziemi, Uk³adzie S³onecznym i odleg³ych obiektach
+astronomicznych, w formie graficznej i liczbowej, w uk³adzie
+geocentrycznym, heliocentrycznym i topocentrycznym.
 
 %prep
 %setup -q
@@ -31,6 +35,7 @@ xmkmf
 make
 
 %install
+rm -rf $RPM_BUILD_ROOT
 XS=GUI/xephem
 XL=$RPM_BUILD_ROOT%{_libdir}/xephem
 
@@ -41,26 +46,26 @@ echo "XEphem description \"An Interactive Astronomy Ephemeris\" " >> $RPM_BUILD_
 echo "XEphem exec \"xephem &\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
 echo "XEphem group \"Applications\" " >> $RPM_BUILD_ROOT%{_prefix}/X11R6/share/applnk/XEphem
 
-install -s -m 755 -o 0 -g 0 $XS/xephem $RPM_BUILD_ROOT%{_bindir}/xephem
+install -s $XS/xephem $RPM_BUILD_ROOT%{_bindir}/xephem
 
-install -o 0 -g 0 $XS/xephem.man $RPM_BUILD_ROOT%{_prefix}/man/man1/xephem.1x
+install $XS/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1x
 
-install -d -m 755 -o 0 -g 0 $XL/auxil
-install -d -m 755 -o 0 -g 0 $XL/catalogs
-install -d -m 755 -o 0 -g 0 $XL/catalogs/gsc
-install -d -m 755 -o 0 -g 0 $XL/fifos
-install -d -m 755 -o 0 -g 0 $XL/tools
-install -d -m 755 -o 0 -g 0 $XL/tools/gsc
-install -d -m 755 -o 0 -g 0 $XL/tools/xephemdbd
+install -d $XL/auxil
+install -d $XL/catalogs
+install -d $XL/catalogs/gsc
+install -d $XL/fifos
+install -d $XL/tools
+install -d $XL/tools/gsc
+install -d $XL/tools/xephemdbd
 
-install -o 0 -g 0 $XS/auxil/*		$XL/auxil
-install -o 0 -g 0 $XS/catalogs/*		$XL/catalogs
-install -o 0 -g 0 $XS/fifos/*		$XL/fifos
-install -o 0 -g 0 $XS/tools/[Raejtm]*	$XL/tools
-install -o 0 -g 0 $XS/tools/gsc/*	$XL/tools/gsc
-install -o 0 -g 0 $XS/tools/xephemdbd/*	$XL/tools/xephemdbd
+install $XS/auxil/*		$XL/auxil
+install $XS/catalogs/*		$XL/catalogs
+install $XS/fifos/*		$XL/fifos
+install $XS/tools/[Raejtm]*	$XL/tools
+install $XS/tools/gsc/*	$XL/tools/gsc
+install $XS/tools/xephemdbd/*	$XL/tools/xephemdbd
 
-install -o 0 -g 0 $XS/XEphem.ad \
+install $XS/XEphem.ad \
 	$RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/app-defaults/XEphem
 
 cat > README.linux <<'EOT'
