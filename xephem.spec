@@ -5,9 +5,10 @@ Version:	3.2.3
 Release:	7
 Copyright:	Freely redistributable/modifiable if attributed, no warranty
 Group:		X11/Applications
+Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
 Source0:	ftp://iraf.noao.edu/contrib/xephem/%{name}-%{version}.tar.gz
-Patch0:		xephem-3.2.3-config.patch
+Patch0:		%{name}-3.2.3-config.patch
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
