@@ -4,6 +4,6 @@ Comment=Interactive astronomy program
 Comment[pl]=Interaktywny program astronomiczny
 Icon=xephem.png
 Exec=xephem
-Terminal=0
+Terminal=false
 Type=Application
 # vi: encoding=utf-8
