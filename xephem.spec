@@ -19,12 +19,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
-XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
+XEphem \eks-i-'fem\ n. [X Window + Ephemeris] (1990)
 XEphem is a star-charting, sky-simulating, ephemeris-generating
 celestial virtuoso.
 
 %description -l pl
-XEphem  \eks-i-'fem\   n.   [X Window + Ephemeris]   (1990)
+XEphem \eks-i-'fem\ n. [X Window + Ephemeris] (1990)
 XEphem jest programem sporz±dzaj±cym mapê gwiazd, symuluj±cym niebo,
 efemerydalnie generuj±cym sferê niebiesk± wirtuozem. Udostêpnia wiele
 informacji o satelitach Ziemi, Uk³adzie S³onecznym i odleg³ych
