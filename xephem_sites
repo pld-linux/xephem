@@ -504,7 +504,6 @@ WIYN Observatory                        ;  31 57  0 N   ; 111 36  0 W   ;  2089 
 WSHB, Cyprus Creek, South Carolina      ;  32 41  2 N   ;  81  7 51 W   ;    -1 ; EST5EDT
 Waco, Texas                             ;  31 33 12 N   ;  97  8  0 W   ; 123.4 ; CST6CDT
 Walla Walla, Washington                 ;  46  4  8 N   ; 118 20 24 W   ; 285.3 ; PST8PDT
-Warsaw, Poland                          ;  52 15  0 N   ;  21  0  0 E   ; 109.7 ; CET-2/CEST-2,M3.5.0,M10.5.0
 Washington, DC                          ;  38 53 51 N   ;  77  0 33 W   ;   7.6 ; EST5EDT
 Waterbury, Connecticut                  ;  41 33 13 N   ;  73  2 31 W   ;  79.2 ; EST5EDT
 Waterloo, Iowa                          ;  42 29 40 N   ;  92 20 20 W   ; 259.1 ; CST6CDT
@@ -535,6 +534,31 @@ Zagreb, Croatia                         ;  45 48 43 N   ;  15 58 52 E   ;   135 
 Zanesville, Ohio                        ;  39 56 18 N   ;  82  0 30 W   ; 219.5 ; EST5EDT
 Zentralinstitut fur Astrophysik         ;  52 23  0 N   ;  13  4  0 E   ;   107 ; MET-1METDST,M3.5.0,M10.5.0
 Zurich, Switzerland                     ;  47 22 40 N   ;  08 33  4 E   ;  -1.0 ; MET-1METDST,M3.5.0,M10.5.0
+
+Rzeszów, Polska ; 50 2 60 N ; 22 0 0 E ; 206 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Kraków, Polska ; 50 4 59 N ; 19 55 1 E ; 233 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Katowice, Polska ; 50 16 1 N ; 19 1 1 E ; 279 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Opole, Polska ; 50 40 1 N ; 17 57 0 E ; 152 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wroc³aw, Polska ; 51 6 0 N ; 17 1 59 E ; 118 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Gorzów Wielkopolski, Polska ; 52 43 59 N ; 15 13 59 E ; 48 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Szczecin, Polska ; 53 25 1 N ; 14 34 59 E ; 1 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Poznañ, Polska ; 52 25 1 N ; 16 58 1 E ; 50 ; CET2/CEST-2,M.3.5.0,M10.5.0
+£ód¼, Polska ; 51 45 0 N ; 19 28 1 E ; 198 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Kielce, Polska ; 50 49 59 N ; 20 40 1 E ; 265 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Lublin, Polska ; 51 15 0 N ; 22 34 1 E ; 170 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Warszawa, Polska ; 52 15 0 N ; 21 0 0 E ; 94 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Bydgoszcz, Polska ; 53 8 60 N ; 18 0 0 E ; 68 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Gdañsk, Polska ; 54 21 0 N ; 18 40 1 E ; 13 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Olsztyn, Polska ; 53 46 59 N ; 20 28 59 E ; 158 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Bia³ystok, Polska ; 53 7 59 N ; 23 8 60 E ; 163 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Czudec / Rzeszów, Polska ; 49 57 0 N ; 21 49 59 E ; 307 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Hulskie, Polska ; 49 15 0 N ; 22 33 0 E ; 527 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Zatwarnica, Polska ; 49 13 1 N ; 22 34 1 E ; 633 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Cisna, Polska ; 49 13 1 N ; 22 19 59 E ; 586 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wetlina, Polska ; 49 8 60 N ; 22 28 59 E ; 742 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Tworylne, Polska ; 49 16 59 N ; 22 28 59 E ; 605 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Rosochate, Polska ; 49 16 59 N ; 22 37 1 E ; 588 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wy¿ne / Rzeszów, Polska ; 49 55 59 N ; 21 52 59 E ; 231 ; CET2/CEST-2,M.3.5.0,M10.5.0
 
 # For RCS Only -- Do Not Edit
 # @(#) $RCSfile$ $Date$ $Revision$ $Name$
