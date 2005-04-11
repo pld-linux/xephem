@@ -535,30 +535,34 @@ Zanesville, Ohio                        ;  39 56 18 N   ;  82  0 30 W   ; 219.5 
 Zentralinstitut fur Astrophysik         ;  52 23  0 N   ;  13  4  0 E   ;   107 ; MET-1METDST,M3.5.0,M10.5.0
 Zurich, Switzerland                     ;  47 22 40 N   ;  08 33  4 E   ;  -1.0 ; MET-1METDST,M3.5.0,M10.5.0
 
-Rzeszów, Polska ; 50 2 60 N ; 22 0 0 E ; 206 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Kraków, Polska ; 50 4 59 N ; 19 55 1 E ; 233 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Katowice, Polska ; 50 16 1 N ; 19 1 1 E ; 279 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Opole, Polska ; 50 40 1 N ; 17 57 0 E ; 152 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Wroc³aw, Polska ; 51 6 0 N ; 17 1 59 E ; 118 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Gorzów Wielkopolski, Polska ; 52 43 59 N ; 15 13 59 E ; 48 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Szczecin, Polska ; 53 25 1 N ; 14 34 59 E ; 1 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Poznañ, Polska ; 52 25 1 N ; 16 58 1 E ; 50 ; CET2/CEST-2,M.3.5.0,M10.5.0
-£ód¼, Polska ; 51 45 0 N ; 19 28 1 E ; 198 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Kielce, Polska ; 50 49 59 N ; 20 40 1 E ; 265 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Lublin, Polska ; 51 15 0 N ; 22 34 1 E ; 170 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Warszawa, Polska ; 52 15 0 N ; 21 0 0 E ; 94 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Bydgoszcz, Polska ; 53 8 60 N ; 18 0 0 E ; 68 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Gdañsk, Polska ; 54 21 0 N ; 18 40 1 E ; 13 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Olsztyn, Polska ; 53 46 59 N ; 20 28 59 E ; 158 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Bia³ystok, Polska ; 53 7 59 N ; 23 8 60 E ; 163 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Czudec / Rzeszów, Polska ; 49 57 0 N ; 21 49 59 E ; 307 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Hulskie, Polska ; 49 15 0 N ; 22 33 0 E ; 527 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Zatwarnica, Polska ; 49 13 1 N ; 22 34 1 E ; 633 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Cisna, Polska ; 49 13 1 N ; 22 19 59 E ; 586 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Wetlina, Polska ; 49 8 60 N ; 22 28 59 E ; 742 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Tworylne, Polska ; 49 16 59 N ; 22 28 59 E ; 605 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Rosochate, Polska ; 49 16 59 N ; 22 37 1 E ; 588 ; CET2/CEST-2,M.3.5.0,M10.5.0
-Wy¿ne / Rzeszów, Polska ; 49 55 59 N ; 21 52 59 E ; 231 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Rzeszów, Poland ; 50 2 60 N ; 22 0 0 E ; 206 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Kraków, Poland ; 50 4 59 N ; 19 55 1 E ; 233 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Katowice, Poland ; 50 16 1 N ; 19 1 1 E ; 279 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Opole, Poland ; 50 40 1 N ; 17 57 0 E ; 152 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wroc³aw, Poland ; 51 6 0 N ; 17 1 59 E ; 118 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Gorzów Wielkopolski, Poland ; 52 43 59 N ; 15 13 59 E ; 48 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Szczecin, Poland ; 53 25 1 N ; 14 34 59 E ; 1 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Poznañ, Poland ; 52 25 1 N ; 16 58 1 E ; 50 ; CET2/CEST-2,M.3.5.0,M10.5.0
+£ód¼, Poland ; 51 45 0 N ; 19 28 1 E ; 198 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Kielce, Poland ; 50 49 59 N ; 20 40 1 E ; 265 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Lublin, Poland ; 51 15 0 N ; 22 34 1 E ; 170 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Warszawa, Poland ; 52 15 0 N ; 21 0 0 E ; 94 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Bydgoszcz, Poland ; 53 8 60 N ; 18 0 0 E ; 68 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Gdañsk, Poland ; 54 21 0 N ; 18 40 1 E ; 13 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Olsztyn, Poland ; 53 46 59 N ; 20 28 59 E ; 158 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Bia³ystok, Poland ; 53 7 59 N ; 23 8 60 E ; 163 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Czudec / Rzeszów, Poland ; 49 57 0 N ; 21 49 59 E ; 307 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Hulskie, Poland ; 49 15 0 N ; 22 33 0 E ; 527 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Zatwarnica, Poland ; 49 13 1 N ; 22 34 1 E ; 633 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Cisna, Poland ; 49 13 1 N ; 22 19 59 E ; 586 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wetlina, Poland ; 49 8 60 N ; 22 28 59 E ; 742 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Tworylne, Poland ; 49 16 59 N ; 22 28 59 E ; 605 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Rosochate, Poland ; 49 16 59 N ; 22 37 1 E ; 588 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Wy¿ne / Rzeszów, Poland ; 49 55 59 N ; 21 52 59 E ; 231 ; CET2/CEST-2,M.3.5.0,M10.5.0
+Zakopane, Poland ; 49 17 60 N ; 19 58 1 E ;  ; CET2/CEST-2,M.3.5.0,M10.5.0
+Lubaczów, Poland ; 50 10 1 N ; 23 7 59 E ;  ; CET2/CEST-2,M.3.5.0,M10.5.0
+Odrzykoñ, Poland ; 49 45 0 N ; 21 45 0 E ;  ; CET2/CEST-2,M.3.5.0,M10.5.0
+Za³u¿, Poland ; 49 31 59 N ; 22 18 0 E ;  ; CET2/CEST-2,M.3.5.0,M10.5.0
 
 # For RCS Only -- Do Not Edit
 # @(#) $RCSfile$ $Date$ $Revision$ $Name$
