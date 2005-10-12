@@ -1,12 +1,12 @@
 Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.6.4
+Version:	3.7
 Release:	0.1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
-# Source0-md5:	f108d27e25cf9d569fbe419c1570e504
+# Source0-md5:	30d253d086580895df73d17e47b1a5fa
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 # http://www.clearskyinstitute.com/xephem/help/xephem.html
@@ -74,24 +74,25 @@ mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
 mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
 
 %build
-%{__make} -C libastro \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
 
-%{__make} -C libip \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -I../libastro"
-
-%{__make} -C liblilxml \
-        CC="%{__cc}" \
-        CFLAGS="%{rpmcflags}"
-
-%{__make} -C libjpegd \
-        CC="%{__cc}" \
-        CFLAGS="%{rpmcflags}"
+#%{__make} -C libastro \
+#	CC="%{__cc}" \
+#	CFLAGS="%{rpmcflags}"
+#
+#%{__make} -C libip \
+#	CC="%{__cc}" \
+#	CFLAGS="%{rpmcflags} -I../libastro"
+#
+#%{__make} -C liblilxml \
+#        CC="%{__cc}" \
+#        CFLAGS="%{rpmcflags}"
+#
+#%{__make} -C libjpegd \
+#        CC="%{__cc}" \
+#        CFLAGS="%{rpmcflags}"
 
 cd GUI/xephem
-xmkmf -a
+#xmkmf -a
 
 %{__make} \
 	CC="%{__cc}" \
@@ -111,7 +112,7 @@ xmkmf -a
 
 %{__make} drivers -C tools/indi \
         CC="%{__cc}" \
-        CFLAGS="%{rpmcflags} -I../../../../liblilxml -I../../../../libastro"
+        CFLAGS="%{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
 
 %install
 rm -rf $RPM_BUILD_ROOT
