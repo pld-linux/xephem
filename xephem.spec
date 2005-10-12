@@ -10,8 +10,8 @@ Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 # http://www.clearskyinstitute.com/xephem/help/xephem.html
-Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.6.4.tar.bz2
-# Source3-md5:	c1bf6a50d00f8e4970acd8e6c01e64ac
+Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.7.tar.bz2
+# Source3-md5:	bcf1f88fb75f6e62f8be0ff98e2ecaf2
 Source4:	%{name}_sites
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
@@ -75,24 +75,7 @@ mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
 
 %build
 
-#%{__make} -C libastro \
-#	CC="%{__cc}" \
-#	CFLAGS="%{rpmcflags}"
-#
-#%{__make} -C libip \
-#	CC="%{__cc}" \
-#	CFLAGS="%{rpmcflags} -I../libastro"
-#
-#%{__make} -C liblilxml \
-#        CC="%{__cc}" \
-#        CFLAGS="%{rpmcflags}"
-#
-#%{__make} -C libjpegd \
-#        CC="%{__cc}" \
-#        CFLAGS="%{rpmcflags}"
-
 cd GUI/xephem
-#xmkmf -a
 
 %{__make} \
 	CC="%{__cc}" \
