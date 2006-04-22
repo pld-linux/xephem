@@ -7,5 +7,5 @@ Icon=xephem.png
 Exec=xephem
 Terminal=false
 Type=Application
-Categories=Science;Astronomy;
+Categories=Education;Science;Astronomy;
 # vi: encoding=utf-8
