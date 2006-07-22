@@ -81,7 +81,7 @@ cd GUI/xephem
 
 %{__make} \
 	CC="%{__cc}" \
-	CDEBUGFLAGS="%{rpmcflags}"
+	CFLAGS="%{rpmcflags}"
 
 %{__make} -C tools/lx200xed \
 	CC="%{__cc}" \
