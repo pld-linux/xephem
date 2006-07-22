@@ -17,6 +17,7 @@ Patch0:		%{name}-makefile.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
@@ -70,6 +71,8 @@ Podrêcznik XEphema w formacie HTML.
 %setup -q
 %patch0 -p1
 
+sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
+
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 mv GUI/xephem/tools/indi/README GUI/xephem/tools/indi/README-indi
 mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
@@ -81,7 +84,7 @@ cd GUI/xephem
 
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	CDEBUGFLAGS="%{rpmcflags}"
 
 %{__make} -C tools/lx200xed \
 	CC="%{__cc}" \
