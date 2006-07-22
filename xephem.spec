@@ -1,18 +1,19 @@
 Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.7
-Release:	0.1
+Version:	3.7.1
+Release:	1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
-# Source0-md5:	30d253d086580895df73d17e47b1a5fa
+# Source0-md5:	a7a89469f1c0681d186344ef96941b8d
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 # http://www.clearskyinstitute.com/xephem/help/xephem.html
-Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.7.tar.bz2
-# Source3-md5:	bcf1f88fb75f6e62f8be0ff98e2ecaf2
+Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.7.1.tar.bz2
+# Source3-md5:	b5951f5cc23a9cbc91697df395987f09
 Source4:	%{name}_sites
+Patch0:		%{name}-makefile.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
@@ -60,13 +61,14 @@ Group:		X11/Applications/Science
 Requires:	%{name} = %{version}-%{release}
 
 %description doc
-XEphem documentation in PDF format.
+XEphem reference manual in HTML format.
 
 %description doc -l pl
-Dokumentacja XEphema w formacie PDF.
+Podrêcznik XEphema w formacie HTML.
 
 %prep
 %setup -q
+%patch0 -p1
 
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 mv GUI/xephem/tools/indi/README GUI/xephem/tools/indi/README-indi
