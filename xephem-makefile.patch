@@ -1,0 +1,11 @@
+--- xephem-3.7.1.orig/GUI/xephem/Makefile	2005-11-18 14:43:09.000000000 +0100
++++ xephem-3.7.1/GUI/xephem/Makefile	2006-07-22 18:28:04.305473250 +0200
+@@ -34,7 +34,7 @@
+ CLDFLAGS = -g
+ CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) -I/usr/X11R6/include
+ LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/usr/X11R6/lib
+-XLIBS = $(MOTIFL)/libXm.a -lXp -lXt -lXext -lSM -lICE -lXmu -lX11
++XLIBS = -lXm -lXp -lXt -lXext -lSM -lICE -lXmu -lX11
+ LIBS = $(XLIBS) $(LIBLIB) -lm
+ 
+ # MKS Enterprise toolkit
