@@ -39,6 +39,7 @@ Amsterdam, Netherlands                  ;  52 22  0 N   ;  04 54  0 E   ;  -1.0 
 Anchorage, Alaska                       ;  61 10  0 N   ; 149 59  0 W   ;  36.0 ; YST9YDT
 Ann Arbor, Michigan                     ;  42 16 59 N   ;  83 44 52 W   ; 268.2 ; EST5EDT
 Antwerp, Belgium                        ;  51 10 16 N   ;  04 24 21 E   ;  -1.0 ; MET-1METDST,M3.5.0,M10.5.0
+Apache Point Observatory, New Mexico    ;  32 46 49 N   ; 105 49 13 W   ;  2788 ; MST7MDT
 Archenhold-Sternwarte                   ;  52 29  0 N   ;  13 29  0 E   ;    41 ; MET-1METDST,M3.5.0,M10.5.0
 Arecibo Radiotelescope, Puerto Rico     ;  18 21 14 N   ;  66 45 19 W   ;   496 ; AST4
 Argus Radio Telescope (NAAPO)           ;  40 00 09 N   ;  83 02 41 W   ; 248.5 ; EST5EDT4,M4.1.0,M10.5.0
@@ -46,7 +47,7 @@ Arlington, Virginia                     ;  38 52  0 N   ;  77  7  0 W   ;   9.1 
 Asheville, North Carolina               ;  35 35 42 N   ;  82 33 26 W   ; 605.0 ; EST5EDT
 Ashland, Kentucky                       ;  38 28 36 N   ;  82 38 23 W   ; 163.4 ; EST5EDT
 Astronomisches Inst. Univ. Obs.         ;  48 14  0 N   ;  16 20  0 E   ;   241 ; MET-1METDST,M3.5.0,M10.5.0
-Astrophys. Research Consortium (ARC)    ;  32 47  0 N   ; 105 49  0 W   ;  2800 ; CST6CDT
+Astrophys. Research Consortium (ARC)    ;  32 46 49 N   ; 105 49 13 W   ;  2788 ; MST7MDT
 Athens, Greece                          ;  37 58  0 N   ;  23 44  0 E   ;  91.4 ; EET-2EETDST,M3.5.0,M10.5.0
 Atlanta, Georgia                        ;  33 45 10 N   ;  84 23 37 W   ; 320.0 ; EST5EDT
 Atlantic City, New Jersey               ;  39 21 32 N   ;  74 25 53 W   ;   3.0 ; EST5EDT
@@ -187,6 +188,7 @@ Fort Smith, Arkansas                    ;  35 23 10 N   ;  94 25 36 W   ; 134.1 
 Fort Wayne, Indiana                     ;  41  4 21 N   ;  85  8 26 W   ; 240.8 ; EST5
 Fort Worth, Texas                       ;  32 44 55 N   ;  97 19 44 W   ; 204.2 ; CST6CDT
 Frankfurt, Germany                      ;  50  3  0 N   ;  08 24  0 E   ;  -1.0 ; MET-1METDST,M3.5.0,M10.5.0
+Fremont Peak Observatory, CA, USA       ;  36 45 37 N   ; 121 29 55 W   ; 838   ; PST8PDT
 Fresno, California                      ;  36 44 12 N   ; 119 47 11 W   ;  86.9 ; PST8PDT
 Gadsden, Alabama                        ;  34  0 57 N   ;  86  0 41 W   ; 169.2 ; CST6CDT
 Gainesville, Florida                    ;  29 38 56 N   ;  82 19 19 W   ;  53.3 ; EST5EDT
@@ -282,7 +284,7 @@ Macon, Georgia                          ;  32 50 12 N   ;  83 37 36 W   ; 102.1 
 Macquarie Island, AAT                   ;  54 30  0 S   ; 158 57  0 E   ;    -1 ; NZT-12NZS,M10.1.0,M3.2.0
 Madison, Wisconsin                      ;  43  4 23 N   ;  89 22 55 W   ; 262.1 ; CST6CDT
 Madrid, Spain                           ;  40 25  0 N   ;  03 42  0 W   ;  -1.0 ; MET-1METDST,M3.5.0,M10.5.0
-Magdalena Ridge Obs, NM, USA            ;  33 59  6 N   ; 107 11 22 W   ; 3239  ; MST7MDT
+Magdalena Ridge Obs, NM, USA            ;  33 59  6 N   ; 107 11 22 W   ; 3235  ; MST7MDT
 Managua, Nicaragua                      ;  13 16  0 N   ;  87 40  0 W   ;  -1.0 ; CST6
 Manchester, New Hampshire               ;  42 59 26 N   ;  71 27 41 W   ;  53.3 ; EST5EDT
 Marseille, France                       ;  43 17  0 N   ;   5 22  0 E   ;    -1 ; MET-1METDST,M3.5.0,M10.5.0
@@ -292,7 +294,8 @@ Mawson Observatory, AAT                 ;  67 36  0 S   ;  62 53  0 E   ;    -1 
 McDonald Observatory                    ;  30 40 18 N   ; 104  1 18 W   ;  2075 ; CST6CDT
 Melbourne Vic, Australia                ;  37 48  0 S   ; 144 58  0 E   ;     9 ; EST-10EDT,M10.5.0,M3.5.0
 Memphis, Tennessee                      ;  35  8 46 N   ;  90  3 13 W   ;  83.8 ; CST6CDT
-Merida, Venezuela                       ;  08 35 56 N   ;  71 09 12 W   ; 1603.
+Menville, France                        ;  43 40 41 N   ;   1 11 40 E   ; 135.0 ; MET-1METDST,M3.5.0,M10.5.0
+Merida, Venezuela                       ;  08 35 56 N   ;  71 09 12 W   ; 1603. ; VET4
 Meriden, Connecticut                    ;  41 32  6 N   ;  72 47 30 W   ;  57.9 ; EST5EDT
 Metepec, Puebla, Mexico                 ;  18 55 93 N   ;  98 28 01 W   ;  1956 ; CST6CDT
 Miami, Florida                          ;  25 46 37 N   ;  80 11 32 W   ;   3.0 ; EST5EDT
@@ -504,6 +507,7 @@ WIYN Observatory                        ;  31 57  0 N   ; 111 36  0 W   ;  2089 
 WSHB, Cyprus Creek, South Carolina      ;  32 41  2 N   ;  81  7 51 W   ;    -1 ; EST5EDT
 Waco, Texas                             ;  31 33 12 N   ;  97  8  0 W   ; 123.4 ; CST6CDT
 Walla Walla, Washington                 ;  46  4  8 N   ; 118 20 24 W   ; 285.3 ; PST8PDT
+Warsaw, Poland                          ;  52 15  0 N   ;  21  0  0 E   ; 109.7 ; CET-2/CEST-2,M3.5.0,M10.5.0
 Washington, DC                          ;  38 53 51 N   ;  77  0 33 W   ;   7.6 ; EST5EDT
 Waterbury, Connecticut                  ;  41 33 13 N   ;  73  2 31 W   ;  79.2 ; EST5EDT
 Waterloo, Iowa                          ;  42 29 40 N   ;  92 20 20 W   ; 259.1 ; CST6CDT
@@ -567,7 +571,6 @@ Przysietnica / Krosno, Poland ; 49 43 59 N ; 22 3 0 E ; 364 ; CET2/CEST-2,M.3.5.
 Przysietnica / Nowy S±cz, Poland ; 49 31 1 N ; 20 37 59 E ; 396 ; CET2/CEST-2,M.3.5.0,M10.5.0
 Nowy S±cz, Poland ; 49 37 59 N ; 20 43 1 E ; 381 ; CET2/CEST-2,M.3.5.0,M10.5.0
 Brzozów, Poland ; 49 42 0 N ; 22 1 1 E ; 257 ; CET2/CEST-2,M.3.5.0,M10.5.0
-
 
 # For RCS Only -- Do Not Edit
 # @(#) $RCSfile$ $Date$ $Revision$ $Name$
