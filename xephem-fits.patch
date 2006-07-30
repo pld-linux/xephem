@@ -1,11 +1,11 @@
 --- xephem-3.7.1.orig/GUI/xephem/skyfits.c	2005-11-18 14:43:11.000000000 +0100
-+++ xephem-3.7.1/GUI/xephem/skyfits.c	2006-07-30 03:00:10.819101750 +0200
-@@ -929,7 +929,7 @@
- 	char *fn;
++++ xephem-3.7.1/GUI/xephem/skyfits.c	2006-07-30 03:18:21.623272750 +0200
+@@ -1398,7 +1398,7 @@
+ 		dd++;
+ 		dm = 0;
+ 	    }
+-	    (void) sprintf (buf, "%02d%02d%c%02d%02d", rh, rm,
++	    (void) sprintf (buf, "%02d%02d%c%02d%02d.fts", rh, rm,
+ 						dneg ? '-' : '+', dd, dm);
  
- 	fn = XmTextFieldGetString (savefn_w);
--	(void) sprintf (buf, "%.*s%s", bname(fn)-fn, fn, bname(newfn));
-+	(void) sprintf (buf, "%.*s%s.fts", bname(fn)-fn, fn, bname(newfn));
- 	XtFree (fn);
- 	XmTextFieldSetString (savefn_w, buf);
- }
+ 	}
