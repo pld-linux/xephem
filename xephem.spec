@@ -1,3 +1,8 @@
+#
+# TODO: Check INDI interface (anyone with telescope?), probably change
+#	fifo dir (/usr/share/xephem/fifo) as it needs to be writeable.
+#	And how it cooperates with http://indi.sf.net?
+#
 Summary:	Interactive astronomy program
 Summary(pl):	Interaktywny program astronomiczny
 Name:		xephem
@@ -43,15 +48,19 @@ Requires:	%{name} = %{version}-%{release}
 %description tools
 astorb2edb - convert astorb.txt to 2 .edb files,
 mpcorb2edb - convert MPCORB.DAT to 2 .edb files,
+INDI - tools for connecting telescope using INDI interface,
 lx200xed - a daemon to connect XEphem to a Meade LX200 telescope,
-XEphemdbd - is a filter to find astronomical objects within a given
+xedb - tool to generate ephemeris data from .edb files,
+XEphemdbd - filter to find astronomical objects within a given
 	    field of view.
 
 %description tools -l pl
 astorb2edb - konwertuje astorb.txt do 2 plików .edb,
 mpcorb2edb - konwertuje MPCORB.DAT do 2 plików .edb,
+INDI - narzêdzia do pod³±czenia teleskopu za pomoc± interfejsu INDI,
 lx200xed - demon do po³±czenia XEphema z teleskopem Meade LX200,
-XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
+xedb - narzêdzie do generowania danych efemerycznych z plików .edb,
+XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 	    pól opisu.
 
 %prep
@@ -60,12 +69,15 @@ XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
 %patch1 -p1
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
+sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
 
-mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 mv GUI/xephem/tools/indi/README GUI/xephem/tools/indi/README-indi
+mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx200xed
 mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
 mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
 mv -f Copyright LICENSE
+
+cat %{SOURCE3} >> GUI/xephem/auxil/xephem_sites
 
 %build
 
@@ -87,17 +99,14 @@ cd GUI/xephem
         CC="%{__cc}" \
         CFLAGS="%{rpmcflags} -I../../../../libastro"
 
-%{__make} drivers -C tools/indi \
+%{__make} -C tools/indi \
         CC="%{__cc}" \
         CFLAGS="%{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}}
-
-rm -f GUI/xephem/auxil/xephem_sites
-cp %{SOURCE3} GUI/xephem/auxil/
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -105,6 +114,8 @@ cp -a GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/help $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/gallery $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/lo $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
 
@@ -112,13 +123,31 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 echo XEphem.ShareDir: %{_datadir}/%{name} > $RPM_BUILD_ROOT%{_appdefsdir}/XEphem
 
+# INDI drivers
+install GUI/xephem/tools/indi/cam $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/ota $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/security $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/tmount $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/wx $RPM_BUILD_ROOT%{_bindir}
+
+install GUI/xephem/tools/indi/evalINDI $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/getINDI $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/indiserver $RPM_BUILD_ROOT%{_bindir}
+install GUI/xephem/tools/indi/setINDI $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/lx200xed/lx200xed $RPM_BUILD_ROOT%{_bindir}
-
+install GUI/xephem/tools/xedb/xedb $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
-install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
-
+# xephemdbd.html and xephemdbd.pl are used for WWW interface to xephemdbd
+# one can make http server subpackage
+install GUI/xephem/tools/xephemdbd/start-xephemdbd.pl $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/auxil/*.pl $RPM_BUILD_ROOT%{_bindir}
-install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
+
+install GUI/xephem/tools/indi/evalINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/evalINDI.1
+install GUI/xephem/tools/indi/getINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/getINDI.1
+install GUI/xephem/tools/indi/indiserver.man $RPM_BUILD_ROOT%{_mandir}/man1/indiserver.1
+install GUI/xephem/tools/indi/setINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/setINDI.1
+
+install GUI/xephem/tools/indi/*.fts $RPM_BUILD_ROOT%{_datadir}/%{name}/fits
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,14 +160,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_appdefsdir}/*
-%{_mandir}/man1/*
+%{_mandir}/man1/xephem.1.*
 
 %files tools
 %defattr(644,root,root,755)
-%doc GUI/xephem/tools/lx200xed/README-lx GUI/xephem/tools/xephemdbd/README-xephemdbd
-%doc GUI/xephem/tools/indi/README-indi GUI/xephem/tools/indi/README-indi
+%doc GUI/xephem/tools/indi/README-indi GUI/xephem/tools/lx200xed/README-lx200xed
+%doc GUI/xephem/tools/xedb/README-xedb GUI/xephem/tools/xephemdbd/README-xephemdbd
 
-%doc GUI/xephem/tools/xephemdbd/*.html
-%attr(755,root,root) %{_bindir}/lx200xed
-%attr(755,root,root) %{_bindir}/xephemdbd
-%attr(755,root,root) %{_bindir}/*.pl
+%attr(755,root,root) %{_bindir}/*
+%exclude %{_bindir}/xephem
+%{_mandir}/man1/*
+%exclude %{_mandir}/man1/xephem.1.*
