@@ -143,6 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %attr(755,root,root) %{_bindir}/xephem
 %{_datadir}/%{name}
+%exclude %{_datadir}/%{name}/doc
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_appdefsdir}/*
