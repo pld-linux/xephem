@@ -9,16 +9,14 @@ Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
 # Source0-md5:	a7a89469f1c0681d186344ef96941b8d
 Source1:	%{name}.desktop
 Source2:	%{name}.png
-# http://www.clearskyinstitute.com/xephem/help/xephem.html
-Source3:	http://distfiles.pld-linux.org/src/xephem-reference-manual-html-3.7.1.tar.bz2
-# Source3-md5:	b5951f5cc23a9cbc91697df395987f09
-Source4:	%{name}_sites
+Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-fits.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	sed >= 4.0
+Obsoletes:	xephem-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
@@ -56,18 +54,6 @@ lx200xed - demon do po³±czenia XEphema z teleskopem Meade LX200,
 XEphemdbd - filt do odnajdywania obiektów astronomicznych wg zadanych
 	    pól opisu.
 
-%package doc
-Summary:	XEphem documentation in PDF
-Summary(pl):	Dokumentacja XEphema w PDF-ie
-Group:		X11/Applications/Science
-Requires:	%{name} = %{version}-%{release}
-
-%description doc
-XEphem reference manual in HTML format.
-
-%description doc -l pl
-Podrêcznik XEphema w formacie HTML.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -79,6 +65,7 @@ mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx
 mv GUI/xephem/tools/indi/README GUI/xephem/tools/indi/README-indi
 mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
 mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
+mv -f Copyright LICENSE
 
 %build
 
@@ -106,15 +93,16 @@ cd GUI/xephem
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name}/doc,%{_mandir}/man1} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1} \
 	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}}
 
 rm -f GUI/xephem/auxil/xephem_sites
-cp %{SOURCE4} GUI/xephem/auxil/
+cp %{SOURCE3} GUI/xephem/auxil/
 
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/help $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
 
@@ -131,9 +119,6 @@ install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
 
 install GUI/xephem/auxil/*.pl $RPM_BUILD_ROOT%{_bindir}
 install GUI/xephem/tools/xephemdbd/*.pl $RPM_BUILD_ROOT%{_bindir}
-cp -f Copyright LICENSE
-
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/%{name}/doc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -143,7 +128,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %attr(755,root,root) %{_bindir}/xephem
 %{_datadir}/%{name}
-%exclude %{_datadir}/%{name}/doc
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_appdefsdir}/*
@@ -158,7 +142,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/lx200xed
 %attr(755,root,root) %{_bindir}/xephemdbd
 %attr(755,root,root) %{_bindir}/*.pl
-
-%files doc
-%defattr(644,root,root,755)
-%{_datadir}/%{name}/doc
