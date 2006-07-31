@@ -16,8 +16,8 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-fits.patch
 URL:		http://www.clearskyinstitute.com/xephem/
-BuildRequires:	XFree86-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	sed >= 4.0
 Obsoletes:	xephem-doc
@@ -65,6 +65,7 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
