@@ -157,7 +157,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_appdefsdir}/*
-%{_mandir}/man1/xephem.1.*
+%{_mandir}/man1/xephem.1*
 
 %files tools
 %defattr(644,root,root,755)
@@ -167,4 +167,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %exclude %{_bindir}/xephem
 %{_mandir}/man1/*
-%exclude %{_mandir}/man1/xephem.1.*
+%exclude %{_mandir}/man1/xephem.1*
