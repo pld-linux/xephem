@@ -19,6 +19,7 @@ Patch0:		%{name}-makefile.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	openmotif-devel
 BuildRequires:	sed >= 4.0
+Requires:	xorg-lib-libXt >= 1.0.0
 Obsoletes:	xephem-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
