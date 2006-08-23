@@ -22,7 +22,7 @@ BuildRequires:	sed >= 4.0
 Obsoletes:	xephem-doc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdefsdir	/usr/share/X11/app-defaults/
+%define		_appdefsdir	/usr/share/X11/app-defaults
 
 %description
 XEphem \eks-i-'fem\ n. [X Window + Ephemeris] (1990)
