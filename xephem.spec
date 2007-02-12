@@ -4,7 +4,7 @@
 #	And how it cooperates with http://indi.sf.net?
 #
 Summary:	Interactive astronomy program
-Summary(pl.UTF-8):   Interaktywny program astronomiczny
+Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.7.1
 Release:	3
@@ -40,7 +40,7 @@ geocentrycznym, heliocentrycznym i topocentrycznym.
 
 %package tools
 Summary:	Additional tools for use with XEphem
-Summary(pl.UTF-8):   Dodatkowe narzędzia dla XEphema
+Summary(pl.UTF-8):	Dodatkowe narzędzia dla XEphema
 Group:		X11/Applications/Science
 Requires:	%{name} = %{version}-%{release}
 
