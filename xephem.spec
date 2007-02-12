@@ -4,7 +4,7 @@
 #	And how it cooperates with http://indi.sf.net?
 #
 Summary:	Interactive astronomy program
-Summary(pl):	Interaktywny program astronomiczny
+Summary(pl.UTF-8):   Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.7.1
 Release:	3
@@ -30,17 +30,17 @@ XEphem \eks-i-'fem\ n. [X Window + Ephemeris] (1990)
 XEphem is a star-charting, sky-simulating, ephemeris-generating
 celestial virtuoso.
 
-%description -l pl
+%description -l pl.UTF-8
 XEphem \eks-i-'fem\ n. [X Window + Ephemeris] (1990)
-XEphem jest programem sporz±dzaj±cym mapê gwiazd, symuluj±cym niebo,
-efemerydalnie generuj±cym sferê niebiesk± wirtuozem. Udostêpnia wiele
-informacji o satelitach Ziemi, Uk³adzie S³onecznym i odleg³ych
-obiektach astronomicznych, w formie graficznej i liczbowej, w uk³adzie
+XEphem jest programem sporzÄ…dzajÄ…cym mapÄ™ gwiazd, symulujÄ…cym niebo,
+efemerydalnie generujÄ…cym sferÄ™ niebieskÄ… wirtuozem. UdostÄ™pnia wiele
+informacji o satelitach Ziemi, UkÅ‚adzie SÅ‚onecznym i odlegÅ‚ych
+obiektach astronomicznych, w formie graficznej i liczbowej, w ukÅ‚adzie
 geocentrycznym, heliocentrycznym i topocentrycznym.
 
 %package tools
 Summary:	Additional tools for use with XEphem
-Summary(pl):	Dodatkowe narzêdzia dla XEphema
+Summary(pl.UTF-8):   Dodatkowe narzÄ™dzia dla XEphema
 Group:		X11/Applications/Science
 Requires:	%{name} = %{version}-%{release}
 
@@ -53,14 +53,14 @@ xedb - tool to generate ephemeris data from .edb files,
 XEphemdbd - filter to find astronomical objects within a given
 	    field of view.
 
-%description tools -l pl
-astorb2edb - konwertuje astorb.txt do 2 plików .edb,
-mpcorb2edb - konwertuje MPCORB.DAT do 2 plików .edb,
-INDI - narzêdzia do pod³±czenia teleskopu za pomoc± interfejsu INDI,
-lx200xed - demon do po³±czenia XEphema z teleskopem Meade LX200,
-xedb - narzêdzie do generowania danych efemerycznych z plików .edb,
-XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
-	    pól opisu.
+%description tools -l pl.UTF-8
+astorb2edb - konwertuje astorb.txt do 2 plikÃ³w .edb,
+mpcorb2edb - konwertuje MPCORB.DAT do 2 plikÃ³w .edb,
+INDI - narzÄ™dzia do podÅ‚Ä…czenia teleskopu za pomocÄ… interfejsu INDI,
+lx200xed - demon do poÅ‚Ä…czenia XEphema z teleskopem Meade LX200,
+xedb - narzÄ™dzie do generowania danych efemerycznych z plikÃ³w .edb,
+XEphemdbd - filtr do odnajdywania obiektÃ³w astronomicznych wg zadanych
+	    pÃ³l opisu.
 
 %prep
 %setup -q
