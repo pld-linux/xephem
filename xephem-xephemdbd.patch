@@ -1,0 +1,11 @@
+--- GUI/xephem/tools/xephemdbd/request.c.orig	2007-08-30 14:26:29.000000000 +0200
++++ GUI/xephem/tools/xephemdbd/request.c	2007-08-30 14:26:13.000000000 +0200
+@@ -155,7 +155,7 @@
+ {
+ 	char str1[32], str2[32];
+ 
+-	fs_date (str1, mjd_day(mjd));
++	fs_date (str1, pref_get(PREF_DATE_FORMAT), mjd_day(mjd));
+ 	fs_sexa (str2, mjd_hr(mjd), 2, 3600);
+ 	printf ("UTC Time:  %s  %s  JD %13.5f\n", str1, str2, mjd+MJD0);
+ 
