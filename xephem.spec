@@ -6,17 +6,19 @@
 Summary:	Interactive astronomy program
 Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.7.1
-Release:	3
+Version:	3.7.2
+Release:	1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
-# Source0-md5:	a7a89469f1c0681d186344ef96941b8d
+# Source0-md5:	1074e04b9a89302d9f2bad7107674311
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-xephemdbd.patch
 URL:		http://www.clearskyinstitute.com/xephem/
+BuildRequires:	groff
 BuildRequires:	openmotif-devel
 BuildRequires:	sed >= 4.0
 Requires:	xorg-lib-libXt >= 1.0.0
@@ -65,6 +67,7 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
@@ -79,11 +82,28 @@ cat %{SOURCE3} >> GUI/xephem/auxil/xephem_sites
 
 %build
 
+# build these libraries first in order to have CFLAGS passed
+%{__make} -C libastro \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
+
+%{__make} -C libip \
+	CC="%{__cc}" \
+	CFLAGS="-I../libastro %{rpmcflags}"
+
+%{__make} -C libjpegd \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
+
+%{__make} -C liblilxml \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
+
 cd GUI/xephem
 
 %{__make} \
 	CC="%{__cc}" \
-	CDEBUGFLAGS="%{rpmcflags}"
+	CLDFLAGS="%{rpmcflags}"
 
 %{__make} -C tools/lx200xed \
 	CC="%{__cc}" \
@@ -91,15 +111,15 @@ cd GUI/xephem
 
 %{__make} -C tools/xephemdbd \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
+	CFLAGS="-ffast-math %{rpmcflags} -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
 
 %{__make} -C tools/xedb \
         CC="%{__cc}" \
-        CFLAGS="%{rpmcflags} -I../../../../libastro"
+        CFLAGS="-ffast-math %{rpmcflags} -I../../../../libastro"
 
 %{__make} -C tools/indi \
         CC="%{__cc}" \
-        CFLAGS="%{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
+        CFLAGS="-ffast-math %{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -109,10 +129,10 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
 install GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/catalogs $RPM_BUILD_ROOT%{_datadir}/%{name}
-cp -a GUI/xephem/help $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fifos $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/fits $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/gallery $RPM_BUILD_ROOT%{_datadir}/%{name}
+cp -a GUI/xephem/help $RPM_BUILD_ROOT%{_datadir}/%{name}
 cp -a GUI/xephem/lo $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 install GUI/xephem/xephem.man $RPM_BUILD_ROOT%{_mandir}/man1/xephem.1
@@ -142,6 +162,7 @@ install GUI/xephem/auxil/*.pl $RPM_BUILD_ROOT%{_bindir}
 
 install GUI/xephem/tools/indi/evalINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/evalINDI.1
 install GUI/xephem/tools/indi/getINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/getINDI.1
+install GUI/xephem/tools/indi/indidevapi.man $RPM_BUILD_ROOT%{_mandir}/man1/indidevapi.1
 install GUI/xephem/tools/indi/indiserver.man $RPM_BUILD_ROOT%{_mandir}/man1/indiserver.1
 install GUI/xephem/tools/indi/setINDI.man $RPM_BUILD_ROOT%{_mandir}/man1/setINDI.1
 
