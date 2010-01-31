@@ -19,6 +19,7 @@ Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-xephemdbd.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	groff
+BuildRequires:	libpng-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	sed >= 4.0
 Requires:	xorg-lib-libXt >= 1.0.0
@@ -114,12 +115,12 @@ cd GUI/xephem
 	CFLAGS="-ffast-math %{rpmcflags} -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
 
 %{__make} -C tools/xedb \
-        CC="%{__cc}" \
-        CFLAGS="-ffast-math %{rpmcflags} -I../../../../libastro"
+	CC="%{__cc}" \
+	CFLAGS="-ffast-math %{rpmcflags} -I../../../../libastro"
 
 %{__make} -C tools/indi \
-        CC="%{__cc}" \
-        CFLAGS="-ffast-math %{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
+	CC="%{__cc}" \
+	CFLAGS="-ffast-math %{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
 
 %install
 rm -rf $RPM_BUILD_ROOT
