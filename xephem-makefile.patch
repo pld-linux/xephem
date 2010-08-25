@@ -1,9 +1,9 @@
 --- xephem-3.7.1.orig/GUI/xephem/Makefile	2005-11-18 14:43:09.000000000 +0100
 +++ xephem-3.7.1/GUI/xephem/Makefile	2006-07-22 18:28:04.305473250 +0200
 @@ -10,8 +10,8 @@
- # back here and compile and link all the *.c files into one executable, xephem.
+ # one executable, xephem.
  
- # -I and -L flags to find required supporting XEphem libraries
+ # These -I and -L flags point to the supporting XEphem libraries
 -LIBINC = -I../../libastro -I../../libip -I../../liblilxml -I../../libjpegd -I../../libpng -I../../libz
 -LIBLNK = -L../../libastro -L../../libip -L../../liblilxml -L../../libjpegd -L../../libpng -L../../libz
 +LIBINC = -I../../libastro -I../../libip -I../../liblilxml -I../../libjpegd
@@ -11,8 +11,8 @@
  LIBLIB = -lastro -lip -llilxml -ljpegd -lpng -lz
  
  # MOTIFI is the directory containing the Xm directory of include files.
-@@ -32,9 +32,9 @@
- # for linux and pure ppc Apple OS X
+@@ -34,9 +34,9 @@
+ # some systems now use just /usr/X11 (not /usr/X11R6)
  CC = gcc
  CLDFLAGS = -g
 -CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) -I/usr/X11R6/include
@@ -23,7 +23,7 @@
  LIBS = $(XLIBS) $(LIBLIB) -lm
  
  # for ppc Apple OS X to make universal (i386 and ppc binary), requires
-@@ -189,8 +189,6 @@
+@@ -191,8 +191,6 @@
  	cd ../../libip; make
  	cd ../../libjpegd; make
  	cd ../../liblilxml; make
@@ -31,4 +31,4 @@
 -	cd ../../libz; make
  
  clean:
- 	touch x.o
+ 	rm -fr *.o ../../lib*/*.[ao]

@@ -2,21 +2,21 @@
 # TODO: Check INDI interface (anyone with telescope?), probably change
 #	fifo dir (/usr/share/xephem/fifo) as it needs to be writeable.
 #	And how it cooperates with http://indi.sf.net?
+#	Consider using system-wide libjpeg instead of shipped libjpegd
 #
 Summary:	Interactive astronomy program
 Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.7.2
-Release:	3
+Version:	3.7.4
+Release:	1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
-Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tar.gz
-# Source0-md5:	1074e04b9a89302d9f2bad7107674311
+Source0:	http://97.74.56.125/free/%{name}-%{version}.tar.gz
+# Source0-md5:	4e9290609f36df469a2ba5a1b4fffd46
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
-Patch1:		%{name}-xephemdbd.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	groff
 BuildRequires:	libpng-devel
@@ -68,7 +68,6 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
