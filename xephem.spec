@@ -20,7 +20,7 @@ Patch0:		%{name}-makefile.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	groff
 BuildRequires:	libpng-devel
-BuildRequires:	openmotif-devel
+BuildRequires:	motif-devel
 BuildRequires:	sed >= 4.0
 Requires:	xorg-lib-libXt >= 1.0.0
 Obsoletes:	xephem-doc
