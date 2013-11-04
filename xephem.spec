@@ -8,7 +8,7 @@ Summary:	Interactive astronomy program
 Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.7.4
-Release:	3
+Release:	4
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://97.74.56.125/free/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-format.patch
 URL:		http://www.clearskyinstitute.com/xephem/
 BuildRequires:	groff
 BuildRequires:	libpng-devel
@@ -68,6 +69,7 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
