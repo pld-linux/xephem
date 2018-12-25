@@ -11,32 +11,6 @@ index 63a0065..16bf565 100644
  	int tok = ERR;	/* just something illegal */
  	char c;
  
-diff --git a/GUI/xephem/obslog.c b/GUI/xephem/obslog.c
-index e3912e2..7deb5a6 100644
---- a/GUI/xephem/obslog.c
-+++ b/GUI/xephem/obslog.c
-@@ -915,7 +915,7 @@ ol_writeLB()
- 	fprintf (fp, "    </%s>\n", lbetag);
- 
- 	/* finished */
--	fprintf (fp, cltag);
-+	fprintf (fp, "%s", cltag);
- 	xe_msg (1, "Added new log entry");
- 	fclose (fp);
- }
-diff --git a/GUI/xephem/tools/indi/compiler.c b/GUI/xephem/tools/indi/compiler.c
-index 2e16d93..736f2a1 100644
---- a/GUI/xephem/tools/indi/compiler.c
-+++ b/GUI/xephem/tools/indi/compiler.c
-@@ -268,7 +268,7 @@ next_token ()
- {
- 	static char toomv[] = "More than %d variables";
- 	static char toomc[] = "More than %d constants";
--	static char badop[] = "Illegal operator";
-+	static const char badop[] = "Illegal operator";
- 	int tok = ERR;	/* just something illegal */
- 	char c;
- 
 diff --git a/GUI/xephem/tools/lx200xed/lx200xed.c b/GUI/xephem/tools/lx200xed/lx200xed.c
 index 34bdb33..4c6e5b0 100644
 --- a/GUI/xephem/tools/lx200xed/lx200xed.c
