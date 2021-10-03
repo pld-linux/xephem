@@ -1,18 +1,20 @@
---- xephem-3.7.7/GUI/xephem/Makefile.orig	2015-08-09 23:36:50.000000000 +0200
-+++ xephem-3.7.7/GUI/xephem/Makefile	2018-12-19 21:10:25.456956449 +0100
-@@ -10,8 +10,8 @@
+diff -urNp -x '*.orig' xephem-3.7.7.org/GUI/xephem/Makefile xephem-3.7.7/GUI/xephem/Makefile
+--- xephem-3.7.7.org/GUI/xephem/Makefile	2021-10-03 10:45:25.604455606 +0200
++++ xephem-3.7.7/GUI/xephem/Makefile	2021-10-03 10:45:25.831118713 +0200
+@@ -10,9 +10,9 @@
  # one executable, xephem.
  
  # These -I and -L flags point to the supporting XEphem libraries
 -LIBINC = -I../../libastro -I../../libip -I../../liblilxml -I../../libjpegd -I../../libpng -I../../libz
 -LIBLNK = -L../../libastro -L../../libip -L../../liblilxml -L../../libjpegd -L../../libpng -L../../libz
+-LIBLIB = -lastro -lip -llilxml -ljpegd -lpng -lz
 +LIBINC = -I../../libastro -I../../libip -I../../liblilxml
 +LIBLNK = -L../../libastro -L../../libip -L../../liblilxml
--LIBLIB = -lastro -lip -llilxml -ljpegd -lpng -lz
 +LIBLIB = -lastro -lip -llilxml -ljpeg -lpng -lz
  
  # MOTIFI is the directory containing the Xm directory of include files.
-@@ -32,7 +32,7 @@
+ # MOTIFL is the directory containing the libXm.a library.
+@@ -32,7 +32,7 @@ endif
  # for linux and Apple OS X
  CC = gcc
  CLDFLAGS = -g
@@ -20,8 +22,10 @@
 +CFLAGS = $(LIBINC) $(CLDFLAGS) -Wall -I$(MOTIFI) -I/opt/X11/include
  LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/opt/X11/lib
  XLIBS = -lXm -lXp -lXt -lXext -lXmu -lX11
- LIBS = $(XLIBS) $(LIBLIB) -lm
-@@ -199,8 +199,5 @@
+ LIBS = $(XLIBS) $(LIBLIB) -lm -lssl
+@@ -197,10 +197,7 @@ xephem.1: xephem.man
+ libs:
+ 	cd ../../libastro; make
  	cd ../../libip; make
 -	cd ../../libjpegd; make
  	cd ../../liblilxml; make

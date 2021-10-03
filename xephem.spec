@@ -7,7 +7,7 @@ Summary:	Interactive astronomy program
 Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
 Version:	3.7.7
-Release:	1
+Release:	2
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
 Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tgz
