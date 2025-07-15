@@ -70,10 +70,10 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 
 %prep
 %setup -q
-%patch2 -p3
-%patch3 -p3
-%patch0 -p1
-%patch1 -p1
+%patch -P2 -p3
+%patch -P3 -p3
+%patch -P0 -p1
+%patch -P1 -p1
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
