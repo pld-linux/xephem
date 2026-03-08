@@ -6,20 +6,21 @@
 Summary:	Interactive astronomy program
 Summary(pl.UTF-8):	Interaktywny program astronomiczny
 Name:		xephem
-Version:	3.7.7
-Release:	2
+Version:	4.3.0
+Release:	1
 License:	distributable with free-unices distros, free for non-profit non-commercial purposes
 Group:		X11/Applications/Science
-Source0:	http://www.clearskyinstitute.com/xephem/%{name}-%{version}.tgz
-# Source0-md5:	27c67061a89085bf2b0d4e9deb758a79
+#https://github.com/XEphem/XEphem/releases
+Source0:	https://github.com/XEphem/XEphem/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	0f61db6131b3958c8e681f8daf496cec
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Source3:	%{name}_sites
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-format.patch
-Patch2:		%{name}-3.7.7_openssl.patch
-Patch3:		%{name}-3.7.7_openssl_earthmenu.patch
-URL:		http://www.clearskyinstitute.com/xephem/
+Patch2:		compilation.patch
+Patch3:		helpersdir.patch
+URL:		https://xephem.github.io/XEphem/Site/xephem.html
 BuildRequires:	groff
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -69,11 +70,11 @@ XEphemdbd - filtr do odnajdywania obiektów astronomicznych wg zadanych
 	    pól opisu.
 
 %prep
-%setup -q
-%patch -P2 -p3
-%patch -P3 -p3
+%setup -q -n XEphem-%{version}
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
 
 sed -i "s#X11R6/lib#X11R6/%{_lib}#g" GUI/xephem/Makefile
 sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.pl
@@ -81,7 +82,6 @@ sed -i "s#/usr/local#%{_datadir}#g" GUI/xephem/tools/xephemdbd/start-xephemdbd.p
 mv GUI/xephem/tools/lx200xed/README GUI/xephem/tools/lx200xed/README-lx200xed
 mv GUI/xephem/tools/xedb/README GUI/xephem/tools/xedb/README-xedb
 mv GUI/xephem/tools/xephemdbd/README GUI/xephem/tools/xephemdbd/README-xephemdbd
-mv -f Copyright LICENSE
 
 cat %{SOURCE3} >> GUI/xephem/auxil/xephem_sites
 
@@ -94,7 +94,7 @@ cat %{SOURCE3} >> GUI/xephem/auxil/xephem_sites
 
 %{__make} -C libip \
 	CC="%{__cc}" \
-	CFLAGS="-I../libastro %{rpmcflags}"
+	CFLAGS="-std=c17 -I../libastro %{rpmcflags}"
 
 %{__make} -C libjpegd \
 	CC="%{__cc}" \
@@ -108,28 +108,29 @@ cd GUI/xephem
 
 %{__make} \
 	CC="%{__cc}" \
-	CLDFLAGS="%{rpmcflags}"
+	CLDFLAGS="-std=c17 %{rpmcflags} -D_POSIX_C_SOURCE -D_XOPEN_SOURCE=500 '-DLIBEXECDIR=\"%{_libexecdir}/%{name}\"'"
 
 %{__make} -C tools/lx200xed \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -I../../../../libastro"
+	CLDFLAGS="%{rpmcflags} -I../../../../libastro"
 
 %{__make} -C tools/xephemdbd \
 	CC="%{__cc}" \
-	CFLAGS="-ffast-math %{rpmcflags} -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
+	CLDFLAGS="-ffast-math -std=c17 %{rpmcflags} -D_POSIX_C_SOURCE -D_DEFAULT_SOURCE -I../../../../GUI/xephem -I../../../../libastro -I../../../../libip"
 
 %{__make} -C tools/xedb \
 	CC="%{__cc}" \
-	CFLAGS="-ffast-math %{rpmcflags} -I../../../../libastro"
+	CLDFLAGS="-ffast-math %{rpmcflags} -I../../../../libastro"
 
 %{__make} -C tools/simpleINDI \
 	CC="%{__cc}" \
-	CFLAGS="-ffast-math %{rpmcflags} -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
+	CLDFLAGS="-ffast-math -std=c17 %{rpmcflags} -D_POSIX_C_SOURCE -I../../../../liblilxml -I../../../../libastro -I../../../../libip"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{name},%{_mandir}/man1} \
-	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}}
+	$RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_appdefsdir}} \
+	$RPM_BUILD_ROOT%{_libexecdir}/%{name}
 
 cp -p GUI/xephem/xephem $RPM_BUILD_ROOT%{_bindir}
 cp -a GUI/xephem/auxil $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -154,15 +155,16 @@ cp -p GUI/xephem/tools/xephemdbd/xephemdbd $RPM_BUILD_ROOT%{_bindir}
 # xephemdbd.html and xephemdbd.pl are used for WWW interface to xephemdbd
 # one can make http server subpackage
 cp -p GUI/xephem/tools/xephemdbd/start-xephemdbd.pl $RPM_BUILD_ROOT%{_bindir}
-cp -p GUI/xephem/auxil/*.pl $RPM_BUILD_ROOT%{_bindir}
+mv $RPM_BUILD_ROOT%{_datadir}/%{name}/auxil/*.pl $RPM_BUILD_ROOT%{_libexecdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE
+%doc LICENSE README.md
 %attr(755,root,root) %{_bindir}/xephem
+%attr(755,root,root) %{_libexecdir}/%{name}
 %{_datadir}/%{name}
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*

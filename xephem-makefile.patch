@@ -1,7 +1,7 @@
-diff -urNp -x '*.orig' xephem-3.7.7.org/GUI/xephem/Makefile xephem-3.7.7/GUI/xephem/Makefile
---- xephem-3.7.7.org/GUI/xephem/Makefile	2021-10-03 10:45:25.604455606 +0200
-+++ xephem-3.7.7/GUI/xephem/Makefile	2021-10-03 10:45:25.831118713 +0200
-@@ -10,9 +10,9 @@
+diff -up XEphem-4.2.0/GUI/xephem/Makefile.orig XEphem-4.2.0/GUI/xephem/Makefile
+--- XEphem-4.2.0/GUI/xephem/Makefile.orig	2024-02-13 15:35:36.000000000 +0100
++++ XEphem-4.2.0/GUI/xephem/Makefile	2026-02-26 22:55:10.135805770 +0100
+@@ -9,9 +9,9 @@
  # one executable, xephem.
  
  # These -I and -L flags point to the supporting XEphem libraries
@@ -14,16 +14,16 @@ diff -urNp -x '*.orig' xephem-3.7.7.org/GUI/xephem/Makefile xephem-3.7.7/GUI/xep
  
  # MOTIFI is the directory containing the Xm directory of include files.
  # MOTIFL is the directory containing the libXm.a library.
-@@ -32,7 +32,7 @@ endif
- # for linux and Apple OS X
+@@ -38,7 +38,7 @@ endif
+ 
  CC = gcc
  CLDFLAGS = -g
--CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) -I/opt/X11/include
-+CFLAGS = $(LIBINC) $(CLDFLAGS) -Wall -I$(MOTIFI) -I/opt/X11/include
- LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/opt/X11/lib
- XLIBS = -lXm -lXp -lXt -lXext -lXmu -lX11
+-CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) $(PLATI)
++CFLAGS = $(LIBINC) $(CLDFLAGS) -Wall -I$(MOTIFI) $(PLATI)
+ LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) $(PLATL)
+ XLIBS = -lXm -lXt -lXext -lXmu -lX11
  LIBS = $(XLIBS) $(LIBLIB) -lm -lssl
-@@ -197,10 +197,7 @@ xephem.1: xephem.man
+@@ -203,10 +203,7 @@ xephem.1: xephem.man
  libs:
  	cd ../../libastro; make
  	cd ../../libip; make
@@ -34,3 +34,38 @@ diff -urNp -x '*.orig' xephem-3.7.7.org/GUI/xephem/Makefile xephem-3.7.7/GUI/xep
  
  clean:
  	rm -fr *.o ../../lib*/*.[ao]
+diff -up XEphem-4.3.0/GUI/xephem/tools/lx200xed/Makefile._orig XEphem-4.3.0/GUI/xephem/tools/lx200xed/Makefile
+--- XEphem-4.3.0/GUI/xephem/tools/lx200xed/Makefile._orig	2026-03-06 19:04:45.000000000 +0100
++++ XEphem-4.3.0/GUI/xephem/tools/lx200xed/Makefile	2026-03-07 18:33:45.472283252 +0100
+@@ -1,6 +1,6 @@
+ LIBASTRO = ../../../../libastro
+ CLDFLAGS =
+-CFLAGS = -Wall -O2 $(CLDFLAGS) -I$(LIBASTRO)
++CFLAGS = -Wall $(CLDFLAGS) -I$(LIBASTRO)
+ LDFLAGS = $(CLDFLAGS) -L$(LIBASTRO)
+ CC = gcc
+ 
+diff -up XEphem-4.3.0/GUI/xephem/tools/simpleINDI/Makefile._orig XEphem-4.3.0/GUI/xephem/tools/simpleINDI/Makefile
+--- XEphem-4.3.0/GUI/xephem/tools/simpleINDI/Makefile._orig	2026-03-06 19:04:45.000000000 +0100
++++ XEphem-4.3.0/GUI/xephem/tools/simpleINDI/Makefile	2026-03-07 18:34:05.822597290 +0100
+@@ -7,7 +7,7 @@ LILXMLA = $(LILXML)/liblilxml.a
+ ASTROA = $(ASTRO)/libastro.a
+ 
+ CLDFLAGS = -g
+-CFLAGS = $(CLDFLAGS) -O2 -Wall -I$(LILXML) -I$(ASTRO)
++CFLAGS = $(CLDFLAGS) -Wall -I$(LILXML) -I$(ASTRO)
+ LDFLAGS = $(CLDFLAGS)
+ LIBS = $(LILXMLA) $(ASTROA) -lm
+ 
+diff -up XEphem-4.3.0/GUI/xephem/tools/xedb/Makefile._orig XEphem-4.3.0/GUI/xephem/tools/xedb/Makefile
+--- XEphem-4.3.0/GUI/xephem/tools/xedb/Makefile._orig	2026-03-06 19:04:45.000000000 +0100
++++ XEphem-4.3.0/GUI/xephem/tools/xedb/Makefile	2026-03-07 18:34:42.128354329 +0100
+@@ -3,7 +3,7 @@
+ 
+ ASLIBDIR = ../../../../libastro
+ CLDFLAGS =
+-GCCFLAGS = -O2 -ffast-math -Wall
++GCCFLAGS = -ffast-math -Wall
+ CFLAGS = $(CLDFLAGS) $(GCCFLAGS) -I$(ASLIBDIR)
+ LDFLAGS = $(CLDFLAGS) -L$(ASLIBDIR)
+ LIBS = -lastro -lm

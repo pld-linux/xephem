@@ -1,0 +1,11 @@
+diff -up XEphem-4.2.0/GUI/xephem/tools/simpleINDI/simpleINDI.c._orig XEphem-4.2.0/GUI/xephem/tools/simpleINDI/simpleINDI.c
+--- XEphem-4.2.0/GUI/xephem/tools/simpleINDI/simpleINDI.c._orig	2024-02-13 15:35:36.000000000 +0100
++++ XEphem-4.2.0/GUI/xephem/tools/simpleINDI/simpleINDI.c	2026-03-01 09:38:06.195936002 +0100
+@@ -75,6 +75,7 @@
+ #include <ctype.h>
+ #include <stdarg.h>
+ #include <unistd.h>
++#include <time.h>
+ #include <sys/time.h>
+ #include <sys/select.h>
+ #include <sys/socket.h>

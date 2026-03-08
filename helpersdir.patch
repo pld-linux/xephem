@@ -1,0 +1,14 @@
+diff -up XEphem-4.3.0/GUI/xephem/webdbmenu.c._orig XEphem-4.3.0/GUI/xephem/webdbmenu.c
+--- XEphem-4.3.0/GUI/xephem/webdbmenu.c._orig	2026-03-06 19:04:45.000000000 +0100
++++ XEphem-4.3.0/GUI/xephem/webdbmenu.c	2026-03-07 21:04:33.436623602 +0100
+@@ -290,8 +290,8 @@ XtPointer call;
+ 	}
+ 
+ 	/* open a channel */
+-	sprintf (cmd, "cd '%s'; %s/auxil/%s -f %s", getPrivateDir(),
+-					getShareDir(), ap->script, ap->prefix);
++	sprintf (cmd, "cd '%s'; " LIBEXECDIR "/%s -f %s", getPrivateDir(),
++					ap->script, ap->prefix);
+ 	ap->pipefp = popen (cmd, "r");
+ 	if (!ap->pipefp) {
+ 	    xe_msg (1, "Can not start process for %s:\n%s", ap->name,
